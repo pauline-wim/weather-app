@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 // CSS
 import styled from "styled-components";
+
+export const UserContext = createContext();
 
 function Home() {
   const [city, setCity] = useState("");
   const [lat, setlat] = useState("");
   const [lon, setlon] = useState("");
-  // const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState({});
 
   const {
     register,
@@ -44,7 +46,7 @@ function Home() {
     )
       .then((res) => res.json())
       .then((res) => {
-        // setWeather(res);
+        setWeather(res);
         console.log(res);
       })
       .catch((err) => {
@@ -53,14 +55,20 @@ function Home() {
   }, [lat, lon]);
   // };
 
+  const value = {
+    weather: weather,
+  };
+
   return (
-    <HomeSection>
-      <h1>Homepage</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="search" {...register("userEntry", { required: true })} />
-        <input type="submit" value="Search" />
-      </form>
-    </HomeSection>
+    <UserContext.Provider value={value}>
+      <HomeSection>
+        <h1>Homepage</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input type="search" {...register("userEntry", { required: true })} />
+          <input type="submit" value="Search" />
+        </form>
+      </HomeSection>
+    </UserContext.Provider>
   );
 }
 
