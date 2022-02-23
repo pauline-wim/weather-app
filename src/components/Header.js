@@ -6,7 +6,7 @@ function Header() {
   return (
     <HeaderSection>
       <h2>
-        <span className="emoji">&#9925;</span> What's the Weather like Today?
+        <span className="emoji">&#9925;</span> What's The Weather Like Today?
       </h2>
       <nav>
         <Link to="/">Home</Link>
