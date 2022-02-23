@@ -1,9 +1,16 @@
+// CSS
+import styled from "styled-components";
+
 function Home() {
   return (
-    <div>
+    <HomeSection>
       <h1>Homepage</h1>
-    </div>
+    </HomeSection>
   );
 }
+
+const HomeSection = styled.div`
+  height: 58vh;
+`;
 
 export default Home;
