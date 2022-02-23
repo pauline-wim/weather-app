@@ -5,7 +5,9 @@ import styled from "styled-components";
 function Header() {
   return (
     <HeaderSection>
-      <img src="" alt="sun" />
+      <h2>
+        <span className="emoji">&#9925;</span> What's the Weather like Today?
+      </h2>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/fav">Favorites</Link>
@@ -17,7 +19,12 @@ function Header() {
 const HeaderSection = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 30px;
+  align-items: center;
+  padding: 0 30px;
+  .emoji {
+    font-size: 40px;
+    padding-right: 10px;
+  }
   nav {
     /* border: 2px solid red; */
     width: 150px;

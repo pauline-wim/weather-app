@@ -10,7 +10,8 @@ function Home() {
 }
 
 const HomeSection = styled.div`
-  height: 58vh;
+  height: 65vh;
+  text-align: center;
 `;
 
 export default Home;

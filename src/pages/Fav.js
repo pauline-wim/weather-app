@@ -1,9 +1,17 @@
+// CSS
+import styled from "styled-components";
+
 function Fav() {
   return (
-    <div>
+    <FavSection>
       <h1>Favorites</h1>
-    </div>
+    </FavSection>
   );
 }
+
+const FavSection = styled.div`
+  height: 65vh;
+  text-align: center;
+`;
 
 export default Fav;

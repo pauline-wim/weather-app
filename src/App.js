@@ -12,9 +12,9 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div>
+      {/* <div>
         <h1>What's the Weather like Today?</h1>
-      </div>
+      </div> */}
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/fav" component={Fav} />
