@@ -24,16 +24,25 @@ const Card = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   text-align: center;
-  margin: 20px auto;
-  padding: 0 0 20px;
-  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  /* padding: auto; */
+  width: 400px;
+  height: 360px;
+  h1 {
+    margin-top: 0;
+    font-size: 40px;
+  }
   p {
     padding: 0;
     margin: 0;
   }
   .temp {
     padding-left: 20px;
-    font-size: 70px;
+    font-size: 80px;
   }
 `;
 
