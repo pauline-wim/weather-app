@@ -1,5 +1,7 @@
 import { useContext } from "react";
-import { FavContext } from "../components/WeatherCard";
+// import { FavContext } from "../components/WeatherCard";
+// CONTEXT
+import { FavContext } from "../App";
 // CSS
 import styled from "styled-components";
 
@@ -9,9 +11,17 @@ function Fav() {
 
   return (
     <FavSection>
-      {/* {console.log(favContext[0])} */}
+      {console.log(favContext.fav[0])}
       <h1>Favorites</h1>
-      <div>{favContext[0] ? <h1>{favContext[0]?.city}</h1> : null}</div>
+      <div>
+        <h1>{favContext.fav[0]}</h1>
+      </div>
+      <div>
+        <h1>{favContext.fav[1]}</h1>
+      </div>
+      <div>
+        <h1>{favContext.fav[2]}</h1>
+      </div>
     </FavSection>
   );
 }
