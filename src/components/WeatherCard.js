@@ -4,6 +4,8 @@ import { WeatherContext } from "../pages/Home";
 // CSS
 import styled from "styled-components";
 
+export const FavContext = createContext();
+
 function WeatherCard() {
   const weatherContext = useContext(WeatherContext);
   const [fav, setFav] = useState([]);
@@ -11,35 +13,37 @@ function WeatherCard() {
 
   const handleClick = () => {
     if (fav.length < 3) {
-      setFav((prevFav) => [...prevFav, weatherContext.city]);
+      setFav((prevFav) => [...prevFav, weatherContext]);
     } else {
       return alert("You can't have more than three cities in your favorites");
     }
   };
 
   return (
-    <Card>
-      {console.log(fav, fav.length)}
-      <div className="contentWrapper">
-        <div className="weatherInfo">
-          <h1>{weatherContext.city}</h1>
-          <p className="temp">{weatherContext.temp}°</p>
-          <img
-            src={`http://openweathermap.org/img/wn/${weatherContext.weather.icon}@2x.png`}
-            alt="icon weather"
+    <FavContext.Provider value={fav}>
+      <Card>
+        {console.log(fav[0]?.city)}
+        <div className="contentWrapper">
+          <div className="weatherInfo">
+            <h1>{weatherContext.city}</h1>
+            <p className="temp">{weatherContext.temp}°</p>
+            <img
+              src={`http://openweathermap.org/img/wn/${weatherContext.weather.icon}@2x.png`}
+              alt="icon weather"
+            />
+            {weatherContext.weather ? (
+              <p>{weatherContext.weather.description}</p>
+            ) : null}
+          </div>
+          <input
+            className="addToFav"
+            type="button"
+            value="+"
+            onClick={handleClick}
           />
-          {weatherContext.weather ? (
-            <p>{weatherContext.weather.description}</p>
-          ) : null}
         </div>
-        <input
-          className="addToFav"
-          type="button"
-          value="+"
-          onClick={handleClick}
-        />
-      </div>
-    </Card>
+      </Card>
+    </FavContext.Provider>
   );
 }
 
