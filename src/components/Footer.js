@@ -22,7 +22,7 @@ const FooterSection = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 30px;
+  padding: 0 30px;
   nav {
     /* border: 2px solid red; */
     width: 150px;

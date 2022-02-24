@@ -8,7 +8,7 @@ import styled from "styled-components";
 export const WeatherContext = createContext();
 
 function Home() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("Paris");
   const [lat, setlat] = useState("");
   const [lon, setlon] = useState("");
   const [weather, setWeather] = useState({});
@@ -56,7 +56,7 @@ function Home() {
       .catch((err) => {
         console.log(`Error while fetching weather for ${city}`, err);
       });
-  }, [lon, lat, city]);
+  }, [city, lon, lat]);
   // };
 
   const value = {
@@ -80,8 +80,10 @@ function Home() {
 }
 
 const HomeSection = styled.div`
-  height: 65vh;
+  /* height: 65vh; */
   text-align: center;
+  margin: 0;
+  padding: 0;
   .submitBtn {
     cursor: pointer;
   }
