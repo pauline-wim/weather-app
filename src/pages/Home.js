@@ -29,7 +29,7 @@ function Home() {
   // const getWeather = () => {
   useEffect(() => {
     fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=93fe279fbf441b9d89bd4279e43d740e`
+      `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=1e16d4d808acf38429a267a69416f852`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -45,18 +45,18 @@ function Home() {
 
   useEffect(() => {
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=93fe279fbf441b9d89bd4279e43d740e`
+      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=1e16d4d808acf38429a267a69416f852`
     )
       .then((res) => res.json())
       .then((res) => {
         setWeather(res.weather[0]);
-        setTemp(res.main.temp);
+        setTemp(Math.floor(res.main.temp));
         // console.log(res);
       })
       .catch((err) => {
         console.log(`Error while fetching weather for ${city}`, err);
       });
-  }, [lat, lon]);
+  }, [lon, lat, city]);
   // };
 
   const value = {
@@ -68,12 +68,12 @@ function Home() {
   return (
     <WeatherContext.Provider value={value}>
       <HomeSection>
-        <h1>Homepage</h1>
+        <h1>Where is the sun?</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input type="search" {...register("userEntry", { required: true })} />
-          <input type="submit" value="Search" />
+          <input className="submitBtn" type="submit" value="Search" />
         </form>
-        {city ? <WeatherCard /> : null}
+        {city && lon ? <WeatherCard /> : null}
       </HomeSection>
     </WeatherContext.Provider>
   );
@@ -82,6 +82,9 @@ function Home() {
 const HomeSection = styled.div`
   height: 65vh;
   text-align: center;
+  .submitBtn {
+    cursor: pointer;
+  }
 `;
 
 export default Home;
