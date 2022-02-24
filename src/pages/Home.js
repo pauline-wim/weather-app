@@ -13,6 +13,7 @@ function Home() {
   const [lon, setlon] = useState("");
   const [weather, setWeather] = useState({});
   const [temp, setTemp] = useState("");
+  // const [search, setSearch] = useState(false);
 
   const {
     register,
@@ -22,6 +23,7 @@ function Home() {
 
   const onSubmit = (data) => {
     setCity(data.userEntry);
+    // setSearch((prevSearch) => !prevSearch);
     console.log(data.userEntry);
     // getWeather();
   };
