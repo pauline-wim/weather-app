@@ -5,7 +5,7 @@ import WeatherCard from "../components/WeatherCard";
 // CSS
 import styled from "styled-components";
 
-export const WeatherContext = createContext();
+// export const WeatherContext = createContext();
 
 function Home() {
   const [city, setCity] = useState("Paris");
@@ -59,23 +59,30 @@ function Home() {
   }, [city, lon, lat]);
   // };
 
-  const value = {
-    weather: weather,
-    temp: temp,
-    city: city,
-  };
+  // const value = {
+  //   weather: weather,
+  //   temp: temp,
+  //   city: city,
+  // };
 
   return (
-    <WeatherContext.Provider value={value}>
-      <HomeSection>
-        <h1>Where is the sun?</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input type="search" {...register("userEntry", { required: true })} />
-          <input className="submitBtn" type="submit" value="Search" />
-        </form>
-        {city && lon ? <WeatherCard /> : null}
-      </HomeSection>
-    </WeatherContext.Provider>
+    // <WeatherContext.Provider value={value}>
+    <HomeSection>
+      <h1>Where is the sun?</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="search" {...register("userEntry", { required: true })} />
+        <input className="submitBtn" type="submit" value="Search" />
+      </form>
+      {city && lon ? (
+        <WeatherCard
+          cityName={city}
+          temp={temp}
+          icon={weather.icon}
+          description={weather.description}
+        />
+      ) : null}
+    </HomeSection>
+    // </WeatherContext.Provider>
   );
 }
 

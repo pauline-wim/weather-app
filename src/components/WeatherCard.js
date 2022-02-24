@@ -1,49 +1,56 @@
+// import Home from "../pages/Home";
 import { useContext, useState, createContext } from "react";
 // Context
-import { WeatherContext } from "../pages/Home";
+// import { WeatherContext } from "../pages/Home";
+import { FavContext } from "../App";
 // CSS
 import styled from "styled-components";
 
-export const FavContext = createContext();
+export const SelectCityContext = createContext();
 
-function WeatherCard() {
-  const weatherContext = useContext(WeatherContext);
-  const [fav, setFav] = useState([]);
+function WeatherCard(props) {
+  // const weatherContext = useContext(WeatherContext);
+  const favContext = useContext(FavContext);
+  // const [fav, setFav] = useState([]);
   //   console.log(weatherContext.weather);
 
   const handleClick = () => {
-    if (fav.length < 3) {
-      setFav((prevFav) => [...prevFav, weatherContext]);
-    } else {
-      return alert("You can't have more than three cities in your favorites");
-    }
+    // if (fav.length < 3) {
+    //   setFav((prevFav) => [...prevFav, props.cityName]);
+    // } else {
+    //   return alert("You can't have more than three cities in your favorites");
+    // }
+    favContext.addFav(props.cityName);
   };
 
+  // const favValue = {
+  //   fav: fav,
+  //   city: fav[0]?.city,
+  // };
+
   return (
-    <FavContext.Provider value={fav}>
-      <Card>
-        {console.log(fav[0]?.city)}
-        <div className="contentWrapper">
-          <div className="weatherInfo">
-            <h1>{weatherContext.city}</h1>
-            <p className="temp">{weatherContext.temp}°</p>
-            <img
-              src={`http://openweathermap.org/img/wn/${weatherContext.weather.icon}@2x.png`}
-              alt="icon weather"
-            />
-            {weatherContext.weather ? (
-              <p>{weatherContext.weather.description}</p>
-            ) : null}
-          </div>
-          <input
-            className="addToFav"
-            type="button"
-            value="+"
-            onClick={handleClick}
+    // <FavContext.Provider value={favValue}>
+    <Card>
+      {/* {console.log(favContext)} */}
+      <div className="contentWrapper">
+        <div className="weatherInfo">
+          <h1>{props.cityName}</h1>
+          <p className="temp">{props.temp}°</p>
+          <img
+            src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`}
+            alt="icon weather"
           />
+          <p>{props.description}</p>
         </div>
-      </Card>
-    </FavContext.Provider>
+        <input
+          className="addToFav"
+          type="button"
+          value="+"
+          onClick={handleClick}
+        />
+      </div>
+    </Card>
+    // </FavContext.Provider>
   );
 }
 
